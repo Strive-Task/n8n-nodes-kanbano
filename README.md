@@ -1,8 +1,6 @@
 # n8n-nodes-kanbano
 
-This is an n8n community node. It lets you use _app/service name_ in your n8n workflows.
-
-_App/service name_ is _one or two sentences describing the service this node integrates with_.
+This is an n8n official node for the Kanbano API. It lets you automate authentication, users, board collaboration, tasks, messages, tags, checklist items, and notification token management in n8n workflows.
 
 [n8n](https://n8n.io/) is a [fair-code licensed](https://docs.n8n.io/sustainable-use-license/) workflow automation platform.
 
@@ -20,27 +18,64 @@ Follow the [installation guide](https://docs.n8n.io/integrations/community-nodes
 
 ## Operations
 
-_List the operations supported by your node._
+Supported resources and operations:
+
+- **Board**: get many, create, update name, update order, set favorite, set public, archive, unarchive, duplicate, delete
+- **Board (collaboration)**: get members, add member, invite member by email, change member role, remove member, precheck invite, send access request, accept/reject request, check pending request, get access requests, get public token
+- **Board (cover)**: change cover value, remove cover
+- **Auth**: register, login, verify email registration, refresh, request password reset, recover password, sign out
+- **Column**: get many, create, update name, update order, archive, duplicate, delete
+- **Firebase**: assign token, revoke token
+- **Task**: get many (with filters), create, update name, update description, update status, update date, move, add/remove performer, add/remove member, add/remove tag, archive, duplicate, get history, delete
+- **Task (sharing/advanced)**: create share link, get share link, remove all performers, remove all tags
+- **Task Message**: get many, create, update, pin/unpin, delete
+- **Tag**: get many, create, update, delete
+- **User**: get me, update name, change password, create unauthorized user, delete avatar, delete me
+- **Checklist**: get many, create, update name, update order, toggle, delete, delete all
 
 ## Credentials
 
-_If users need to authenticate with the app/service, provide details here. You should include prerequisites (such as signing up with the service), available authentication methods, and how to set them up._
+Create a `Kanbano API` credential in n8n and choose one authentication mode:
+
+1. **Access Token**
+   - Paste a valid Kanbano access token
+   - Useful when tokens are managed outside n8n
+2. **Email & Password (Auto Refresh)**
+   - Provide Kanbano account email/password
+   - Node logs in and refreshes tokens automatically
+
+You can also override the API base URL (default: `https://api.kanbano.ru`).
 
 ## Compatibility
 
-_State the minimum n8n version, as well as which versions you test against. You can also include any known version incompatibility issues._
+Tested with current n8n community node tooling (`@n8n/node-cli`). Keep n8n reasonably up to date for the best compatibility.
 
 ## Usage
 
-_This is an optional section. Use it to help users with any difficult or confusing aspects of the node._
+Common flows:
 
-_By the time users are looking for community nodes, they probably already know n8n basics. But if you expect new users, you can link to the [Try it out](https://docs.n8n.io/try-it-out/) documentation to help them get started._
+- Sync board data: `Board -> Get Many`, then `Column -> Get Many`, then `Task -> Get Many`
+- Create and move tasks: `Task -> Create`, then `Task -> Move`
+- Complete work items: `Task -> Update Status` with `Completed`
+- Manage labels and checklist:
+  - `Tag -> Create/Update/Delete`
+  - `Checklist -> Create/Toggle/Delete`
+- Manage collaboration:
+  - `Board -> Invite Member By Email`
+  - `Board -> Get Access Requests` then `Accept Access Request` or `Reject Access Request`
+- Work with task messages:
+  - `Task Message -> Get Many`, `Create`, `Pin`, `Delete`
+- Manage session lifecycle:
+  - `Auth -> Login`, `Refresh`, `Sign Out`
+
+Order fields are entered in UI units. The node automatically scales them to Kanbano API order format.
 
 ## Resources
 
-* [n8n community nodes documentation](https://docs.n8n.io/integrations/#community-nodes)
-* _Link to app/service documentation._
+- [n8n community nodes documentation](https://docs.n8n.io/integrations/#community-nodes)
+- [Kanbano API docs](https://docs.kanbano.ru/)
 
 ## Version history
 
-_This is another optional section. If your node has multiple versions, include a short description of available versions and what changed, as well as any compatibility impact._
+- `0.1.0`: initial Kanbano MVP with board/column/task/tag/checklist support.
+- `0.2.0`: expanded authenticated API coverage for auth, users, board collaboration, task sharing, and task messages.

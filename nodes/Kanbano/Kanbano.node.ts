@@ -1,6 +1,13 @@
 import { NodeConnectionTypes, type INodeType, type INodeTypeDescription } from 'n8n-workflow';
+import { authDescription } from './resources/auth';
+import { boardDescription } from './resources/board';
+import { checklistDescription } from './resources/checklist';
+import { columnDescription } from './resources/column';
+import { firebaseDescription } from './resources/firebase';
+import { tagDescription } from './resources/tag';
+import { taskDescription } from './resources/task';
+import { taskMessageDescription } from './resources/taskMessage';
 import { userDescription } from './resources/user';
-import { companyDescription } from './resources/company';
 
 export class Kanbano implements INodeType {
 	description: INodeTypeDescription = {
@@ -19,7 +26,7 @@ export class Kanbano implements INodeType {
 		outputs: [NodeConnectionTypes.Main],
 		credentials: [{ name: 'kanbanoApi', required: true }],
 		requestDefaults: {
-			baseURL: 'https://api.kanbano.ru',
+			baseURL: '={{$credentials.baseUrl}}',
 			headers: {
 				Accept: 'application/json',
 				'Content-Type': 'application/json',
@@ -33,18 +40,53 @@ export class Kanbano implements INodeType {
 				noDataExpression: true,
 				options: [
 					{
+						name: 'Auth',
+						value: 'auth',
+					},
+					{
+						name: 'Board',
+						value: 'board',
+					},
+					{
+						name: 'Checklist',
+						value: 'checklist',
+					},
+					{
+						name: 'Column',
+						value: 'column',
+					},
+					{
+						name: 'Firebase',
+						value: 'firebase',
+					},
+					{
+						name: 'Tag',
+						value: 'tag',
+					},
+					{
+						name: 'Task',
+						value: 'task',
+					},
+					{
+						name: 'Task Message',
+						value: 'taskMessage',
+					},
+					{
 						name: 'User',
 						value: 'user',
 					},
-					{
-						name: 'Company',
-						value: 'company',
-					},
 				],
-				default: 'user',
+				default: 'task',
 			},
+			...authDescription,
+			...boardDescription,
+			...checklistDescription,
+			...columnDescription,
+			...firebaseDescription,
+			...tagDescription,
+			...taskDescription,
+			...taskMessageDescription,
 			...userDescription,
-			...companyDescription,
 		],
 	};
 }
