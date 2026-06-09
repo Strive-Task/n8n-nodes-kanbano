@@ -1,9 +1,9 @@
 {
-	"name": "n8n-nodes-kanbano",
+	"name": "@strive-task/n8n-nodes-kanbano",
 	"version": "0.2.0",
 	"description": "n8n module for Kanbano",
 	"license": "MIT",
-	"homepage": "",
+	"homepage": "https://github.com/Strive-Task/n8n-nodes-kanbano",
 	"keywords": [
 		"n8n-community-node-package"
 	],
@@ -13,7 +13,12 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "https://storagegitlab.ru/kanbano/n8n-nodes-kanbano.git"
+		"url": "https://github.com/Strive-Task/n8n-nodes-kanbano.git"
+	},
+	"publishConfig": {
+		"access": "public",
+		"provenance": true,
+		"registry": "https://registry.npmjs.org/"
 	},
 	"scripts": {
 		"build": "n8n-node build",

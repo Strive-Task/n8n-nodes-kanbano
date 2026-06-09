@@ -2,6 +2,8 @@
 
 This is an n8n official node for the Kanbano API. It lets you automate authentication, users, board collaboration, tasks, messages, tags, checklist items, and notification token management in n8n workflows.
 
+Published package: `@strive-task/n8n-nodes-kanbano`
+
 [n8n](https://n8n.io/) is a [fair-code licensed](https://docs.n8n.io/sustainable-use-license/) workflow automation platform.
 
 [Installation](#installation)
@@ -10,6 +12,7 @@ This is an n8n official node for the Kanbano API. It lets you automate authentic
 [Compatibility](#compatibility)
 [Usage](#usage)
 [Resources](#resources)
+[Publishing](#publishing)
 [Version history](#version-history)
 
 ## Installation
@@ -74,6 +77,25 @@ Order fields are entered in UI units. The node automatically scales them to Kanb
 
 - [n8n community nodes documentation](https://docs.n8n.io/integrations/#community-nodes)
 - [Kanbano API docs](https://docs.kanbano.ru/)
+
+## Publishing
+
+Release model:
+
+- Push to `main` runs CI (`lint` + `build`).
+- Pushing a tag like `v0.3.0` runs the publish workflow and publishes to npm.
+
+GitHub Actions prerequisites:
+
+- Repository secret `NPM_TOKEN` must be set.
+- npm token must have publish permissions for `@strive-task`.
+- Package is configured as public scoped package through `publishConfig`.
+
+Manual preflight before creating a release tag:
+
+- `pnpm lint`
+- `pnpm build`
+- Optional: `npm pack`
 
 ## Version history
 
