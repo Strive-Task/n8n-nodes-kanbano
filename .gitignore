@@ -1,2 +1,4 @@
 dist
 node_modules
+nodes/Kanbano/helpers.js
+nodes/Kanbano/resources/**/index.js
