@@ -6,7 +6,7 @@ import type {
 	IHttpRequestOptions,
 } from 'n8n-workflow';
 
-type AuthMode = 'accessToken' | 'login';
+type AuthMode = 'apiToken' | 'accessToken' | 'login';
 
 interface LoginResponse {
 	access_token: string;
@@ -154,6 +154,10 @@ export class KanbanoApi implements ICredentialType {
 			type: 'options',
 			options: [
 				{
+					name: 'API Token',
+					value: 'apiToken',
+				},
+				{
 					name: 'Access Token',
 					value: 'accessToken',
 				},
@@ -162,7 +166,20 @@ export class KanbanoApi implements ICredentialType {
 					value: 'login',
 				},
 			],
-			default: 'accessToken',
+			default: 'apiToken',
+		},
+		{
+			displayName: 'API Token',
+			name: 'apiToken',
+			type: 'string',
+			typeOptions: { password: true },
+			required: true,
+			default: '',
+			displayOptions: {
+				show: {
+					authMode: ['apiToken'],
+				},
+			},
 		},
 		{
 			displayName: 'Access Token',
@@ -211,6 +228,22 @@ export class KanbanoApi implements ICredentialType {
 		const mode = (credentials.authMode as AuthMode | undefined) ?? 'accessToken';
 		const baseUrl = resolveBaseUrl(credentials.baseUrl);
 		const headers = requestOptions.headers ?? {};
+
+		if (mode === 'apiToken') {
+			const apiToken = credentials.apiToken;
+			if (typeof apiToken !== 'string' || apiToken.trim() === '') {
+				throw new Error('Kanbano API token is missing.');
+			}
+
+			return {
+				...requestOptions,
+				baseURL: requestOptions.baseURL ?? baseUrl,
+				headers: {
+					...headers,
+					Authorization: `Bearer ${apiToken.trim()}`,
+				},
+			};
+		}
 
 		if (mode === 'accessToken') {
 			const accessToken = credentials.accessToken;

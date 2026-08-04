@@ -34,10 +34,13 @@ Supported resources and operations:
 
 Create a `Kanbano API` credential in n8n and choose one authentication mode:
 
-1. **Access Token**
+1. **API Token**
+   - Paste a Kanbano personal API token (`kanbano_at_...`)
+   - Best for long-lived integrations without login credentials
+2. **Access Token**
    - Paste a valid Kanbano access token
    - Useful when tokens are managed outside n8n
-2. **Email & Password (Auto Refresh)**
+3. **Email & Password (Auto Refresh)**
    - Provide Kanbano account email/password
    - Node logs in and refreshes tokens automatically
 
