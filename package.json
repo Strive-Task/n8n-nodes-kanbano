@@ -1,6 +1,6 @@
 {
 	"name": "@strive-task/n8n-nodes-kanbano",
-	"version": "1.1.0",
+	"version": "1.1.1",
 	"description": "n8n module for Kanbano",
 	"license": "MIT",
 	"homepage": "https://github.com/Strive-Task/n8n-nodes-kanbano",
