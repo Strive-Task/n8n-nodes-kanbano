@@ -3,3 +3,9 @@ dist
 node_modules
 nodes/Kanbano/helpers.js
 nodes/Kanbano/resources/**/index.js
+
+# AI Factory (generated project-local tooling)
+/.ai-factory.json
+/.ai-factory/
+/.codex/
+/.agents/skills/
