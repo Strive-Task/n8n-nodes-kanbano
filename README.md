@@ -70,3 +70,8 @@ Order fields are entered in UI units. The node automatically scales them to Kanb
 
 - [n8n community nodes documentation](https://docs.n8n.io/integrations/#community-nodes)
 - [Kanbano API docs](https://docs.kanbano.ru/)
+
+## Документация для разработчиков и ИИ
+
+- [Инструкции по репозиторию и модулям](AGENTS.md).
+- [Карта предметной области Kanbano](../kanbano-backend/docs/domain/README.md) — сущности, жизненный цикл, доступ, синхронизация и контракты.

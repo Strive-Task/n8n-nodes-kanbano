@@ -100,3 +100,16 @@ regarding building community nodes:
 - https://docs.n8n.io/integrations/creating-nodes/overview/
 - https://docs.n8n.io/integrations/creating-nodes/build/reference/
 - https://docs.n8n.io/integrations/creating-nodes/build/reference/ux-guidelines/
+
+## Kanbano project context
+
+The existing n8n guidance above remains applicable. Product-specific entry points:
+
+| Document | Purpose |
+| --- | --- |
+| [README](README.md) | Installation and supported resources |
+| [Domain map](../kanbano-backend/docs/domain/README.md) | Kanbano model and repository contracts |
+| [Node guidance](nodes/Kanbano/AGENTS.md) | Resource routing and MCP generation dependency |
+| [Credentials guidance](credentials/AGENTS.md) | API token, JWT and login modes |
+
+Cross-repository links require sibling checkouts. For Markdown-only changes, verify sources, links and `git diff --check`; do not run release or alter generated operations.
