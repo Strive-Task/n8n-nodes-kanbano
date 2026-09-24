@@ -4,6 +4,10 @@ const showOnlyForTags = {
 	resource: ['tag'],
 };
 
+const tagColorPalette =
+	'#d3f7f4, #ffd7d4, #f6e8c1, #c1d6f6, #e2f6d6, #f7e0d3, #e1e0fa, #c7e3e1, #f3f3f3, #c2e8ff, #f6ccc1, #f3e3ff';
+const tagColorGuidance = `When setting a tag color, use only one of the Kanbano palette values: ${tagColorPalette}. Other colors may make the black tag text unreadable.`;
+
 export const tagDescription: INodeProperties[] = [
 	{
 		displayName: 'Operation',
@@ -29,6 +33,7 @@ export const tagDescription: INodeProperties[] = [
 				name: 'Create',
 				value: 'create',
 				action: 'Create a tag',
+				description: `Create a tag. Always specify a color. ${tagColorGuidance}`,
 				routing: {
 					request: {
 						method: 'POST',
@@ -113,6 +118,7 @@ export const tagDescription: INodeProperties[] = [
 		name: 'color',
 		type: 'color',
 		default: '#ffffff',
+		description: tagColorGuidance,
 		displayOptions: {
 			show: {
 				resource: ['tag'],
