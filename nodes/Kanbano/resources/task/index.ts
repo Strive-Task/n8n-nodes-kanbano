@@ -210,6 +210,8 @@ export const taskDescription: INodeProperties[] = [
 				name: 'Update Date',
 				value: 'updateDate',
 				action: 'Update task dates',
+				description:
+					'Set a single task deadline with dateEnd only. Set both dateBegin and dateEnd only for a date range.',
 				routing: {
 					request: {
 						method: 'PATCH',
@@ -439,6 +441,7 @@ export const taskDescription: INodeProperties[] = [
 	{
 		displayName: 'Date Begin',
 		name: 'dateBegin',
+		description: 'Optional range start. Omit for a single deadline; use dateEnd only.',
 		type: 'dateTime',
 		default: '',
 		displayOptions: {
@@ -457,6 +460,7 @@ export const taskDescription: INodeProperties[] = [
 	{
 		displayName: 'Date End',
 		name: 'dateEnd',
+		description: 'Deadline date. Set this alone for a single date, or with dateBegin for a range.',
 		type: 'dateTime',
 		default: '',
 		displayOptions: {
